@@ -1,13 +1,22 @@
-import {} from 'hono'
+import { } from 'hono'
 
 type Head = {
   title?: string
 }
 
+type MessageReq = {
+  name: string;
+  body: string;
+}
+
 declare module 'hono' {
   interface Env {
-    Variables: {}
-    Bindings: {}
+    Variables: {
+      MessageReq: MessageReq;
+    }
+    Bindings: {
+      DB: D1Database;
+    }
   }
   interface ContextRenderer {
     (content: string | Promise<string>, head?: Head): Response | Promise<Response>
