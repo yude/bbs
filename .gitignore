@@ -3,6 +3,7 @@ dist
 .wrangler
 .dev.vars
 .hono
+.m1
 
 # Change them to your taste:
 wrangler.toml
