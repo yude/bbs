@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { drizzle } from "drizzle-orm/d1";
 import { messages } from "./schema";
 
@@ -12,6 +13,8 @@ type MessageReq = {
 }
 
 const app = new Hono<{ Bindings: Bindings }>();
+
+app.use('/api/*', cors())
 
 app.get("/api/messages", async (c) => {
   const db = drizzle(c.env.DB);
