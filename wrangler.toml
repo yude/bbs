@@ -1,0 +1,9 @@
+name = "wtfbbs"
+compatibility_date = "2023-12-01"
+main = "src/index.tsx"
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "bbs"
+database_id = "84f0b5b1-d625-46c4-a7db-0b061c8046fc"
+migrations_dir = "drizzle/migrations"

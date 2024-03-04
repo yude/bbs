@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "dev": "wrangler dev src/index.tsx",
+    "deploy": "wrangler deploy --minify src/index.tsx"
+  },
+  "dependencies": {
+    "@honojs/validator": "^0.1.2",
+    "drizzle-kit": "^0.20.14",
+    "drizzle-orm": "^0.29.4",
+    "hono": "^4.0.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "wrangler": "^3.25.0"
+  }
+}
