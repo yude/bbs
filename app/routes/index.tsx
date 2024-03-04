@@ -4,7 +4,6 @@ import Form from '../islands/Form'
 import Messages from '../islands/Messages'
 
 export default createRoute((c) => {
-  
   return c.render(
     <>
       <Layout>

@@ -1,17 +1,15 @@
 import { createRoute } from 'honox/factory'
-import { drizzle } from "drizzle-orm/d1";
-import { messages } from "../../../src/schema";
+import { Message, createMessage } from '../../../db'
 
 type MessageReq = {
-    name: string;
+    username: string;
     body: string;
 }
 
 export const POST = createRoute(async (c) => {
     const params = await c.req.json<MessageReq>();
-    const db = drizzle(c.env.DB);
 
-    if (params.name == '' || params.name == null) {
+    if (params.username == '' || params.username == null) {
         c.status(400);
         return c.text("Name is required")
     }
@@ -21,16 +19,16 @@ export const POST = createRoute(async (c) => {
         return c.text("Message body is required")
     }
 
-    const msg = {
-        name: params.name,
+    const msg: Message = {
+        id: "",
+        created_at: "",
+        username: params.username,
         body: params.body,
-        remote_host: c.req.raw.headers.get("CF-Connecting-IP")?.toString(),
-        cf_ray: c.req.raw.headers.get("CF-RAY"),
+        remote_host: c.req.raw.headers.get("CF-Connecting-IP")?.toString() || "N/A",
+        remote_cf_ray: c.req.raw.headers.get("CF-RAY") || "N/A",
     }
 
-    const result = await db
-        .insert(messages)
-        .values(msg);
+    await createMessage(c.env.DB, msg)
 
     return c.text("Success")
 })

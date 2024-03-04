@@ -4,13 +4,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --mode client && vite build",
-    "preview": "wrangler pages dev ./dist",
-    "deploy": "$npm_execpath run build && wrangler pages deploy ./dist"
+    "deploy": "$npm_execpath run build && wrangler pages deploy ./dist",
+    "migrate": "wrangler d1 execute wtfbbs --local --file=bbs.sql; wrangler d1 execute wtfbbs --file=bbs.sql"
   },
   "private": true,
   "dependencies": {
-    "drizzle-kit": "^0.20.14",
-    "drizzle-orm": "^0.29.4",
+    "@cloudflare/workers-types": "^4.20240222.0",
     "hono": "^4.0.1",
     "honox": "^0.1.0"
   },

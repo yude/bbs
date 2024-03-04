@@ -1,4 +1,6 @@
 import { } from 'hono'
+import { D1Database } from '@cloudflare/workers-types';
+import 'vite/client'
 
 type Head = {
   title?: string
