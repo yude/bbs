@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { desc } from 'drizzle-orm';
 import { drizzle } from "drizzle-orm/d1";
 import { messages } from "./schema";
 
@@ -18,7 +19,7 @@ app.use('/api/*', cors())
 
 app.get("/api/messages", async (c) => {
   const db = drizzle(c.env.DB);
-  const result = await db.select().from(messages).all();
+  const result = (await db.select().from(messages).limit(10).orderBy(desc(messages.id)));
 
   return c.json(result.map(function (obj) {
     return {
